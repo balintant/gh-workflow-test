@@ -12,5 +12,5 @@ jobs:
   release:
     uses: ./.github/workflows/release.yml
     with:
-      stage: ${{ github.event.inputs.name }}
+      name: ${{ inputs.name }}
     secrets: inherit
