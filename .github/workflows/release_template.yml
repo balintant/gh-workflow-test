@@ -10,24 +10,36 @@ jobs:
   greet:
     name: Greet
     runs-on: ubuntu-latest
+    permissions:
+      deployments: write
     steps:
+      - name: Update Deployment Status
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          environment-url: https://localhost:4000/
+          state: in_progress
+          deployment-id: ${{ inputs.name }}
       - name: Checkout
         uses: actions/checkout@v4
       - name: Greet
         run: echo "Hello ${{ inputs.name }}"
+      - name: Wait
+        run: sleep 30
       - name: Update Deployment Status
         if: success()
         uses: chrnorm/deployment-status@v2
         with:
-          token: '${{ github.token }}'
+          token: ${{ github.token }}
           environment-url: https://localhost:4000/
-          state: 'success'
+          state: success
           deployment-id: ${{ inputs.name }}
       - name: Update Deployment Status
         if: failure()
         uses: chrnorm/deployment-status@v2
         with:
-          token: '${{ github.token }}'
+          token: ${{ github.token }}
           environment-url: https://localhost:4000/
-          state: 'failure'
+          state: failure
           deployment-id: ${{ inputs.name }}
