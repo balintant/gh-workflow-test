@@ -36,6 +36,7 @@ jobs:
         with:
           token: ${{ github.token }}
           state: success
+          target-url: https://localhost:4000
           deployment-id: ${{ steps.deployment.outputs.deployment_id }}
       - name: Update Deployment Status
         if: failure()
@@ -43,4 +44,5 @@ jobs:
         with:
           token: ${{ github.token }}
           state: failure
+          target-url: https://localhost:4000
           deployment-id: ${{ steps.deployment.outputs.deployment_id }}
