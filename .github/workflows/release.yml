@@ -1,0 +1,17 @@
+---
+name: Release
+on:
+  workflow_call:
+    input:
+      name:
+        type: string
+        required: true
+jobs:
+  greet:
+    name: Greet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Greet
+        run: echo "Hello ${{ inputs.name }}"

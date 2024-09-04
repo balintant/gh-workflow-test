@@ -1,0 +1,16 @@
+# Release to select environment from select Branch / Tag via the GitHub Actions UI.
+---
+name: Release (Manual)
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Name
+        required: true
+        type: string
+jobs:
+  release:
+    uses: ./.github/workflows/release.yml
+    with:
+      stage: ${{ github.event.inputs.name }}
+    secrets: inherit

@@ -1,0 +1,17 @@
+# Automatically release to the developer environment when pushed to `main`.
+---
+name: Release (Developer)
+on:
+  workflow_run:
+    workflows:
+      - Checks
+    types:
+      - completed
+    branches:
+      - main
+jobs:
+  release:
+    uses: ./.github/workflows/release.yml
+    with:
+      name: Dev Environment
+    secrets: inherit
