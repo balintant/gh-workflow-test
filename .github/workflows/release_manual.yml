@@ -1,6 +1,6 @@
 # Release to select environment from select Branch / Tag via the GitHub Actions UI.
 ---
-name: Release
+name: Rollback
 on:
   workflow_dispatch:
     inputs:
