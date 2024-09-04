@@ -9,5 +9,5 @@ jobs:
   release:
     uses: ./.github/workflows/release_template.yml
     with:
-      name: Test Environment
+      stage: test
     secrets: inherit

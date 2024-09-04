@@ -4,13 +4,18 @@ name: Rollback
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: Name
+      stage:
+        description: Environment
         required: true
-        type: string
+        default: developer
+        type: choice
+        options:
+          - developer
+          - test
+          - production
 jobs:
   release:
     uses: ./.github/workflows/release_template.yml
     with:
-      name: ${{ inputs.name }}
+      stage: ${{ inputs.stage }}
     secrets: inherit

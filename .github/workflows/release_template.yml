@@ -3,7 +3,7 @@ name: 🔒 Release (Template)
 on:
   workflow_call:
     inputs:
-      name:
+      stage:
         type: string
         required: true
 jobs:
@@ -17,11 +17,11 @@ jobs:
         with:
           token: "${{ github.token }}"
           target_url: https://localhost:4000
-          environment: ${{ inputs.name }}
+          environment: ${{ inputs.stage }}
       - name: Checkout
         uses: actions/checkout@v4
       - name: Greet
-        run: echo "Hello ${{ inputs.name }}"
+        run: echo "Hello ${{ inputs.stage }}"
       - name: Update Deployment Status
         uses: chrnorm/deployment-status@releases/v2
         with:

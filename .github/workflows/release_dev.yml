@@ -13,5 +13,5 @@ jobs:
   release:
     uses: ./.github/workflows/release_template.yml
     with:
-      name: Dev Environment
+      stage: developer
     secrets: inherit
