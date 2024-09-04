@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Fail half the time
+        run: (( RANDOM%2 == 0 )) && exit 0 || exit 1
       - name: Wait
         run: sleep 90
       - name: Done
