@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create GitHub deployment
-        uses: chrnorm/deployment-action@releases/v1
+        uses: chrnorm/deployment-action@releases/v2
         id: deployment
         with:
           token: "${{ github.token }}"
@@ -23,7 +23,7 @@ jobs:
       - name: Greet
         run: echo "Hello ${{ inputs.name }}"
       - name: Update Deployment Status
-        uses: chrnorm/deployment-status@releases/v1
+        uses: chrnorm/deployment-status@releases/v2
         with:
           token: ${{ github.token }}
           state: in_progress
@@ -32,7 +32,7 @@ jobs:
         run: sleep 30
       - name: Update Deployment Status
         if: success()
-        uses: chrnorm/deployment-status@releases/v1
+        uses: chrnorm/deployment-status@releases/v2
         with:
           token: ${{ github.token }}
           state: success
