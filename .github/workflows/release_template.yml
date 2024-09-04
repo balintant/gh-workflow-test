@@ -10,9 +10,6 @@ jobs:
   greet:
     name: Greet
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     steps:
       - name: Update Deployment Status
         uses: chrnorm/deployment-status@v2
