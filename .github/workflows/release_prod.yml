@@ -4,10 +4,9 @@
 name: "Auto-Release: Prod"
 on:
   release:
-    types: [published]
+    types: [released]
 jobs:
   release:
-    if: github.event.release.prerelease == false
     uses: ./.github/workflows/release_template.yml
     with:
       name: Test Environment
