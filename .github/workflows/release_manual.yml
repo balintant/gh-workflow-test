@@ -1,0 +1,21 @@
+# Release to select environment from select Branch / Tag via the GitHub Actions UI.
+---
+name: Rollback
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Environment
+        required: true
+        default: developer
+        type: choice
+        options:
+          - developer
+          - test
+          - production
+jobs:
+  release:
+    uses: ./.github/workflows/release_template.yml
+    with:
+      stage: ${{ inputs.stage }}
+    secrets: inherit

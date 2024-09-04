@@ -1,0 +1,13 @@
+# Automatically release to the test environment when a new tag
+# prefixed with `v`, (for example, `v1.0`) is created.
+---
+name: "Auto-Release: Test"
+on:
+  release:
+    types: [published]
+jobs:
+  release:
+    uses: ./.github/workflows/release_template.yml
+    with:
+      stage: test
+    secrets: inherit

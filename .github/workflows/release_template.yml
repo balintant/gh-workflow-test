@@ -1,0 +1,48 @@
+---
+name: 🔒 Release (Template)
+on:
+  workflow_call:
+    inputs:
+      stage:
+        type: string
+        required: true
+jobs:
+  greet:
+    name: Greet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@releases/v2
+        id: deployment
+        with:
+          token: "${{ github.token }}"
+          target_url: https://localhost:4000
+          environment: ${{ inputs.stage }}
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Greet
+        run: echo "Hello ${{ inputs.stage }}"
+      - name: Update Deployment Status
+        uses: chrnorm/deployment-status@releases/v2
+        with:
+          token: ${{ github.token }}
+          state: in_progress
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+      - name: Wait
+        run: sleep 30
+      - name: Update Deployment Status
+        if: success()
+        uses: chrnorm/deployment-status@releases/v2
+        with:
+          token: ${{ github.token }}
+          state: success
+          environment-url: https://localhost:4000
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+      - name: Update Deployment Status
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          state: failure
+          environment-url: https://localhost:4000
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
