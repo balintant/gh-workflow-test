@@ -1,0 +1,17 @@
+---
+name: "Auto-Release: Dev"
+on:
+  workflow_run:
+    workflows:
+      - Checks
+    types:
+      - completed
+    branches:
+      - main
+jobs:
+  release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    uses: ./.github/workflows/release_template.yml
+    with:
+      stage: developer
+    secrets: inherit
