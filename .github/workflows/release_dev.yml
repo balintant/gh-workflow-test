@@ -1,6 +1,6 @@
 # Automatically release to the developer environment when pushed to `main`.
 ---
-name: Release (Developer)
+name: "Auto-Release: Dev"
 on:
   workflow_run:
     workflows:
@@ -11,7 +11,7 @@ on:
       - main
 jobs:
   release:
-    uses: ./.github/workflows/release.yml
+    uses: ./.github/workflows/release_template.yml
     with:
       name: Dev Environment
     secrets: inherit

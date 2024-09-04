@@ -1,5 +1,5 @@
 ---
-name: Release
+name: 🔒 Release (Template)
 on:
   workflow_call:
     inputs:
