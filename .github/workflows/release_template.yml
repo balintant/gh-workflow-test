@@ -18,13 +18,6 @@ jobs:
           token: "${{ github.token }}"
           target_url: https://localhost:4000
           environment: ${{ inputs.name }}
-      - name: Wait on Checks
-        uses: lewagon/wait-on-check-action@v1.3.4
-        with:
-          check-name: 'Checks'
-          ref: ${{ github.ref }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
       - name: Checkout
         uses: actions/checkout@v4
       - name: Greet
