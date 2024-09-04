@@ -10,7 +10,7 @@ on:
         type: string
 jobs:
   release:
-    uses: ./.github/workflow_templates/release.yml
+    uses: ./.github/workflows/release.yml
     with:
       name: ${{ inputs.name }}
     secrets: inherit

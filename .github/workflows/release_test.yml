@@ -8,7 +8,7 @@ on:
       - v*
 jobs:
   release:
-    uses: ./.github/workflow_templates/release.yml
+    uses: ./.github/workflows/release.yml
     with:
       name: Test Environment
     secrets: inherit

@@ -11,7 +11,7 @@ on:
       - main
 jobs:
   release:
-    uses: ./.github/workflow_templates/release.yml
+    uses: ./.github/workflows/release.yml
     with:
       name: Dev Environment
     secrets: inherit
