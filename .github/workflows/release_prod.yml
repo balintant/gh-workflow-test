@@ -1,12 +1,13 @@
 # Automatically release to the test environment when a new tag
 # prefixed with `v`, (for example, `v1.0`) is created.
 ---
-name: "Auto-Release: Production"
+name: "Auto-Release: Prod"
 on:
   release:
     types: [published]
 jobs:
   release:
+    if: github.event.release.prerelease == false
     uses: ./.github/workflows/release_template.yml
     with:
       name: Test Environment
